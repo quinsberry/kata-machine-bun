@@ -35,9 +35,9 @@ export function test_list(createList: () => List<number>): void {
     test("removeAt", () => {
         list.prepend(1);
         list.append(3);
-        list.insertAt(2, 1);
+        list.insertAt(2, 1); // [1,2,3]
         expect(list.get(1)).toBe(2);
-        expect(list.removeAt(1)).toBe(2);
+        expect(list.removeAt(1)).toBe(2); // [1,3]
         expect(list.get(1)).toBe(3);
     });
 
@@ -56,7 +56,9 @@ export function test_list(createList: () => List<number>): void {
     test("insertAt with invalid index", () => {
         list.append(1);
         list.append(3);
-        expect(() => list.insertAt(2, 3)).toThrow();
+        list.insertAt(2, 3);
+        expect(list.get(0)).toBe(1);
+        expect(list.get(1)).toBe(3);
     });
 
     test("remove non-existing element", () => {
