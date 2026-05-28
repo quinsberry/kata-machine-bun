@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
         "allowJs": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
@@ -9,13 +8,12 @@
         "esModuleInterop": true,
         "target": "esnext",
         "module": "commonjs",
-        "baseUrl": "src",
-        "typeRoots": [
-            "node_modules/@types"
+        "types": [
+            "bun"
         ],
         "paths": {
             "@code/*": [
-                "day1/*"
+                "./src/day1/*"
             ]
         }
     },

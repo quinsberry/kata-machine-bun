@@ -58,7 +58,7 @@ export async function generateAlgorithms(config: LigmaConfig) {
 
     const { ts_config, package_json, stats } = await import("./align-configs");
 
-    ts_config(tsconfig_path, day_name);
+    ts_config(tsconfig_path, `./${relative_day_path}`);
     await package_json(package_json_path, relative_day_path);
     stats(stats_path, config);
     await $`bun run format:day`;
