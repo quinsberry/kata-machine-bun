@@ -18,6 +18,8 @@ export default function prims(
     const visited: boolean[] = new Array(list.length).fill(false);
     const mst: GraphEdge[][] = new Array(list.length).fill(null).map(() => []);
 
+    if (list.length === 0) return mst;
+
     // 1.
     visited[0] = true;
     let current = 0;
@@ -26,7 +28,7 @@ export default function prims(
 
     do {
         // 2. put all dem edges in the list
-        for (const edgemeDaddy of list[current]) {
+        for (const edgemeDaddy of list[current]!) {
             edges.push([current, edgemeDaddy]);
         }
 
@@ -42,8 +44,8 @@ export default function prims(
 
         // 4. we need to insert the edge from current to new into our mst, set visited, and remove the potential edge
         if (lowestEdge[1] !== null) {
-            mst[lowestEdge[0]].push(lowestEdge[1]);
-            mst[lowestEdge[1].to].push({
+            mst[lowestEdge[0]]!.push(lowestEdge[1]);
+            mst[lowestEdge[1].to]!.push({
                 to: lowestEdge[0],
                 weight: lowestEdge[1].weight,
             });

@@ -1,10 +1,10 @@
 import prims from "@code/PrimsList";
-import { list1 } from "./data/graph";
+import { circleList1 } from "./data/graph";
 import { expect, test } from "bun:test";
 
 test("PrimsAlgorithm", function () {
     // there is only one right answer for this graph
-    expect(prims(list1)).toEqual([
+    expect(prims(circleList1)).toEqual([
         [
             { to: 2, weight: 1 },
             { to: 1, weight: 3 },

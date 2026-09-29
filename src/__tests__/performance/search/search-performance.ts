@@ -87,12 +87,7 @@ export function searchFasterThanFactorial(
 
 export function searchFasterThan(
     complexity:
-        | "O(log n)"
-        | "O(n)"
-        | "O(n log n)"
-        | "O(n^2)"
-        | "O(2^n)"
-        | "O(n!)",
+        "O(log n)" | "O(n)" | "O(n log n)" | "O(n^2)" | "O(2^n)" | "O(n!)",
     fn: (arr: number[], target: number) => void,
 ): boolean {
     switch (complexity) {

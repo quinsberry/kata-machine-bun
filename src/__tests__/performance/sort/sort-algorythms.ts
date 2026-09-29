@@ -9,16 +9,16 @@ export function countingSort(arr: number[]): number[] {
     const output = new Array(arr.length);
 
     for (let i = 0; i < arr.length; i++) {
-        count[arr[i] - min]++;
+        count[arr[i]! - min]++;
     }
 
     for (let i = 1; i < count.length; i++) {
-        count[i] += count[i - 1];
+        count[i] += count[i - 1]!;
     }
 
     for (let i = arr.length - 1; i >= 0; i--) {
-        output[count[arr[i] - min] - 1] = arr[i];
-        count[arr[i] - min]--;
+        output[count[arr[i]! - min] - 1] = arr[i];
+        count[arr[i]! - min]--;
     }
 
     return output;
@@ -45,16 +45,16 @@ function countingSortByDigit(arr: number[], exp: number): number[] {
     const count = new Array(10).fill(0);
 
     for (let i = 0; i < arr.length; i++) {
-        const digit = Math.floor(arr[i] / exp) % 10;
+        const digit = Math.floor(arr[i]! / exp) % 10;
         count[digit]++;
     }
 
     for (let i = 1; i < 10; i++) {
-        count[i] += count[i - 1];
+        count[i] += count[i - 1]!;
     }
 
     for (let i = arr.length - 1; i >= 0; i--) {
-        const digit = Math.floor(arr[i] / exp) % 10;
+        const digit = Math.floor(arr[i]! / exp) % 10;
         output[count[digit] - 1] = arr[i];
         count[digit]--;
     }
@@ -80,15 +80,15 @@ export function bucketSort(arr: number[]): number[] {
     }
 
     for (let i = 0; i < arr.length; i++) {
-        const bucketIndex = Math.floor((arr[i] - min) / bucketSize);
-        buckets[bucketIndex].push(arr[i]);
+        const bucketIndex = Math.floor((arr[i]! - min) / bucketSize);
+        buckets[bucketIndex]!.push(arr[i]!);
     }
 
     arr.length = 0;
 
     for (let i = 0; i < buckets.length; i++) {
-        buckets[i].sort((a, b) => a - b);
-        arr.push(...buckets[i]);
+        buckets[i]!.sort((a, b) => a - b);
+        arr.push(...buckets[i]!);
     }
 
     return arr;
@@ -116,11 +116,11 @@ function merge(left: number[], right: number[]): number[] {
     let j = 0;
 
     while (i < left.length && j < right.length) {
-        if (left[i] < right[j]) {
-            result.push(left[i]);
+        if (left[i]! < right[j]!) {
+            result.push(left[i]!);
             i++;
         } else {
-            result.push(right[j]);
+            result.push(right[j]!);
             j++;
         }
     }
@@ -140,7 +140,7 @@ export function heapSort(arr: number[]): number[] {
     }
 
     for (let i = n - 1; i > 0; i--) {
-        [arr[0], arr[i]] = [arr[i], arr[0]];
+        [arr[0], arr[i]] = [arr[i]!, arr[0]!];
         heapify(arr, i, 0);
     }
 
@@ -152,16 +152,16 @@ function heapify(arr: number[], n: number, i: number): void {
     const left = 2 * i + 1;
     const right = 2 * i + 2;
 
-    if (left < n && arr[left] > arr[largest]) {
+    if (left < n && arr[left]! > arr[largest]!) {
         largest = left;
     }
 
-    if (right < n && arr[right] > arr[largest]) {
+    if (right < n && arr[right]! > arr[largest]!) {
         largest = right;
     }
 
     if (largest !== i) {
-        [arr[i], arr[largest]] = [arr[largest], arr[i]];
+        [arr[i], arr[largest]] = [arr[largest]!, arr[i]!];
         heapify(arr, n, largest);
     }
 }
@@ -175,7 +175,7 @@ export function quickSort(arr: number[]): number[] {
         return arr;
     }
 
-    const pivot = arr[Math.floor(arr.length / 2)];
+    const pivot = arr[Math.floor(arr.length / 2)]!;
     const left = arr.filter((x) => x < pivot);
     const right = arr.filter((x) => x > pivot);
     const middle = arr.filter((x) => x === pivot);
@@ -191,8 +191,8 @@ export function bubbleSort(arr: number[]): number[] {
     const n = arr.length;
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            if (arr[j]! > arr[j + 1]!) {
+                [arr[j], arr[j + 1]] = [arr[j + 1]!, arr[j]!];
             }
         }
     }
@@ -205,10 +205,10 @@ export function bubbleSort(arr: number[]): number[] {
  */
 export function insertionSort(arr: number[]): number[] {
     for (let i = 1; i < arr.length; i++) {
-        const key = arr[i];
+        const key = arr[i]!;
         let j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
+        while (j >= 0 && arr[j]! > key) {
+            arr[j + 1] = arr[j]!;
             j--;
         }
         arr[j + 1] = key;
@@ -224,11 +224,11 @@ export function selectionSort(arr: number[]): number[] {
     for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = i;
         for (let j = i + 1; j < arr.length; j++) {
-            if (arr[j] < arr[minIndex]) {
+            if (arr[j]! < arr[minIndex]!) {
                 minIndex = j;
             }
         }
-        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+        [arr[i], arr[minIndex]] = [arr[minIndex]!, arr[i]!];
     }
     return arr;
 }
@@ -246,7 +246,7 @@ export function bogoSort(arr: number[]): number[] {
 
 function isSorted(arr: number[]): boolean {
     for (let i = 1; i < arr.length; i++) {
-        if (arr[i] < arr[i - 1]) {
+        if (arr[i]! < arr[i - 1]!) {
             return false;
         }
     }
@@ -256,7 +256,7 @@ function isSorted(arr: number[]): boolean {
 function shuffle(arr: number[]): void {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        [arr[i], arr[j]] = [arr[j]!, arr[i]!];
     }
 }
 
@@ -280,7 +280,7 @@ function permute(arr: number[]): number[][] {
     for (let i = 0; i < arr.length; i++) {
         const rest = permute(arr.slice(0, i).concat(arr.slice(i + 1)));
         for (const perm of rest) {
-            result.push([arr[i], ...perm]);
+            result.push([arr[i]!, ...perm]);
         }
     }
     return result;

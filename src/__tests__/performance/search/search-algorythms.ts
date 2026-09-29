@@ -21,9 +21,10 @@ export function binarySearch(arr: number[], target: number): number {
 
     while (left <= right) {
         const mid = Math.floor((left + right) / 2);
-        if (arr[mid] === target) {
+        const value = arr[mid]!;
+        if (value === target) {
             return mid;
-        } else if (arr[mid] < target) {
+        } else if (value < target) {
             left = mid + 1;
         } else {
             right = mid - 1;
@@ -41,23 +42,26 @@ export function interpolationSearch(arr: number[], target: number): number {
     let low = 0;
     let high = arr.length - 1;
 
-    while (low <= high && target >= arr[low] && target <= arr[high]) {
+    while (low <= high && target >= arr[low]! && target <= arr[high]!) {
         if (low === high) {
             if (arr[low] === target) return low;
             return -1;
         }
 
+        if (arr[high] === arr[low]) return arr[low] === target ? low : -1;
+
         const pos =
             low +
             Math.floor(
-                ((target - arr[low]) * (high - low)) / (arr[high] - arr[low]),
+                ((target - arr[low]!) * (high - low)) /
+                    (arr[high]! - arr[low]!),
             );
 
         if (arr[pos] === target) {
             return pos;
         }
 
-        if (arr[pos] < target) {
+        if (arr[pos]! < target) {
             low = pos + 1;
         } else {
             high = pos - 1;
@@ -75,8 +79,8 @@ export function bubbleSortSearch(arr: number[], target: number): number {
     const n = arr.length;
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            if (arr[j]! > arr[j + 1]!) {
+                [arr[j], arr[j + 1]] = [arr[j + 1]!, arr[j]!];
             }
         }
     }
@@ -95,13 +99,14 @@ function subsetSumHelper(arr: number[], n: number, sum: number): boolean {
     if (sum === 0) return true;
     if (n === 0) return false;
 
-    if (arr[n - 1] > sum) {
+    const value = arr[n - 1]!;
+    if (value > sum) {
         return subsetSumHelper(arr, n - 1, sum);
     }
 
     return (
         subsetSumHelper(arr, n - 1, sum) ||
-        subsetSumHelper(arr, n - 1, sum - arr[n - 1])
+        subsetSumHelper(arr, n - 1, sum - value)
     );
 }
 
@@ -125,7 +130,7 @@ function permute(arr: number[]): number[][] {
     for (let i = 0; i < arr.length; i++) {
         const rest = permute(arr.slice(0, i).concat(arr.slice(i + 1)));
         for (const perm of rest) {
-            result.push([arr[i], ...perm]);
+            result.push([arr[i]!, ...perm]);
         }
     }
     return result;

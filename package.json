@@ -11,6 +11,7 @@
     },
     "scripts": {
         "format": "prettier --write ./src",
+        "lint": "bun run tsc --noEmit",
         "generate": "bun run ./scripts/generate.ts",
         "cli": "bun run ./scripts/cli.ts",
         "clear": "bun run ./scripts/clear.ts",
