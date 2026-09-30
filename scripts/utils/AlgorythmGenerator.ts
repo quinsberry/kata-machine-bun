@@ -10,7 +10,7 @@ export class AlgorythmGenerator {
         this.path = path;
     }
 
-    create_class(name: string, item: ClassStructure) {
+    async create_class(name: string, item: ClassStructure) {
         const classGen = `export default class ${name}${item.generic || ""} {
     ${(item.properties || []).map(this.generate_property).join("")}
     ${this.generate_constructor(item.args)}
@@ -23,13 +23,13 @@ export class AlgorythmGenerator {
             classGen,
             item.description,
         );
-        Bun.write(join(this.path, `${name}.ts`), classGenWithDescription);
+        await Bun.write(join(this.path, `${name}.ts`), classGenWithDescription);
     }
 
-    create_function(name: string, item: FunctionStructure) {
+    async create_function(name: string, item: FunctionStructure) {
         const g = item.generic ? item.generic : "";
         const funcitonGen = `export default function ${item.fn}${g}(${item.args}): ${item.return} {
-    
+    throw new Error("Not implemented");
 }
         `;
 
@@ -38,7 +38,10 @@ export class AlgorythmGenerator {
             item.description,
         );
 
-        Bun.write(join(this.path, `${name}.ts`), funcitonGenWithDescription);
+        await Bun.write(
+            join(this.path, `${name}.ts`),
+            funcitonGenWithDescription,
+        );
     }
 
     private add_description(file: string, description: string | undefined) {
@@ -52,7 +55,7 @@ export class AlgorythmGenerator {
     private generate_constructor(args: string | undefined) {
         return `
     constructor(${args ?? ""}) {
-
+        throw new Error("Not implemented");
     }
         `;
     }
@@ -60,7 +63,7 @@ export class AlgorythmGenerator {
     private generate_method(method: ClassMethod) {
         return `
     ${method.name}(${method.args || ""}): ${method.return || "void"} {
-        
+        throw new Error("Not implemented");
     }
         `;
     }
@@ -72,7 +75,7 @@ export class AlgorythmGenerator {
     private generate_getter(getter: ClassGetter) {
         return `
     ${getter.scope} get ${getter.name}(): ${getter.type} {
-    
+        throw new Error("Not implemented");
     }
         `;
     }

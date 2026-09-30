@@ -4,7 +4,7 @@ import { generateAlgorithms } from "./utils/generateAlgorithms";
 import {
     allAlgorithms,
     theLastAlgorithmsCourseYoullNeedPart1,
-    theLastAlgorithmsCourseYoullNeedPart2,
+    theLastAlgorithmsCourseYoullWantPart2,
 } from "./utils/algorythms";
 
 async function run() {
@@ -14,13 +14,12 @@ async function run() {
             {
                 value: theLastAlgorithmsCourseYoullNeedPart1,
                 short: "Part 1",
-                name: "The last algorithms course you'll need Part 1",
+                name: "The last algorithms course you'll need (Part 1)",
             },
             {
-                value: theLastAlgorithmsCourseYoullNeedPart2,
+                value: theLastAlgorithmsCourseYoullWantPart2,
                 short: "Part 2",
-                name: "The last algorithms course you'll need Part 2",
-                disabled: true,
+                name: "The last algorithms course you'll want (Part 2)",
             },
             {
                 value: allAlgorithms,

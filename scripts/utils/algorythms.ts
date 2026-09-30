@@ -28,6 +28,30 @@ export const theLastAlgorithmsCourseYoullNeedPart1: Algorythm[] = [
     "LRU",
 ];
 
-export const theLastAlgorithmsCourseYoullNeedPart2: Algorythm[] = [];
+export const theLastAlgorithmsCourseYoullWantPart2: Algorythm[] = [
+    "DFSOnBST",
+    "BTPreOrder",
+    "BTInOrder",
+    "BTPostOrder",
+    "BinarySearchTree",
+    "AVLTree",
+    "BTree",
+    "BFSGraphMatrix",
+    "BFSGraphList",
+    "DFSGraphList",
+    "TopologicalSort",
+    "PrimsList",
+    "MinHeap",
+    "IndexedMinHeap",
+    "DijkstraList",
+    "UnionFind",
+    "KruskalList",
+    "FordFulkerson",
+    "Factorial",
+    "Fibonacci",
+    "MaxSubarray",
+    "CoinChange",
+    "BloomFilter",
+];
 
 export const allAlgorithms: Algorythm[] = Object.keys(dsa) as (keyof DSA)[];

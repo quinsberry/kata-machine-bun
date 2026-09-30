@@ -21,6 +21,8 @@ try {
             });
         });
 
+    rmSync("tests.json", { force: true });
+
     console.log("deleting stats");
     rmSync(stats_path, {
         recursive: true,

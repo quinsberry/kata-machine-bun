@@ -43,23 +43,24 @@ export async function generateAlgorithms(config: LigmaConfig) {
 
     const generator = new AlgorythmGenerator({ path: day_path });
 
-    config.dsa.forEach((ds) => {
+    for (const ds of config.dsa) {
         const item = dsa[ds];
         if (!item) {
             throw new Error(`algorithm ${ds} could not be found`);
         }
         if (item.type === "class") {
-            generator.create_class(ds, item);
+            await generator.create_class(ds, item);
         } else {
-            generator.create_function(ds, item);
+            await generator.create_function(ds, item);
         }
-    });
+    }
 
+    await Bun.write("tests.json", JSON.stringify(config.dsa, null, 4));
 
     const { ts_config, package_json, stats } = await import("./align-configs");
 
-    ts_config(tsconfig_path, `./${relative_day_path}`);
+    await ts_config(tsconfig_path, `./${relative_day_path}`);
     await package_json(package_json_path, relative_day_path);
-    stats(stats_path, config);
+    await stats(stats_path, config);
     await $`bun run format:day`;
 }

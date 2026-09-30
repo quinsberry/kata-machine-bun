@@ -5,6 +5,19 @@ export type LigmaConfig = {
 };
 
 export type Algorythm = [
+    "BinarySearchTree",
+    "AVLTree",
+    "BTree",
+    "UnionFind",
+    "IndexedMinHeap",
+    "TopologicalSort",
+    "KruskalList",
+    "FordFulkerson",
+    "Factorial",
+    "Fibonacci",
+    "MaxSubarray",
+    "CoinChange",
+    "BloomFilter",
     "DFSOnBST",
     "LRU",
     "LinearSearchList",

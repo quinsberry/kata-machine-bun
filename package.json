@@ -16,6 +16,7 @@
         "cli": "bun run ./scripts/cli.ts",
         "clear": "bun run ./scripts/clear.ts",
         "format:day": "prettier --write --ignore-path .prettierignore ./src/day1",
-        "day": "echo src/day1"
+        "day": "echo src/day1",
+        "test": "bun run ./scripts/test.ts"
     }
 }

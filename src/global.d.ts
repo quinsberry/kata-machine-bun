@@ -42,3 +42,7 @@ declare interface ILRU<K, V> {
     update(key: K, value: V): void;
     get(key: K): V | undefined;
 }
+
+// B-tree with minimum degree t: non-root nodes have t-1 .. 2t-1 keys.
+declare type BTreeNode = { keys: number[]; children: BTreeNode[] };
+declare type FlowResult = { maxFlow: number; minCut: number[] };

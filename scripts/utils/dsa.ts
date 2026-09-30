@@ -1,3 +1,4 @@
+import { part2 } from "./dsa-part2";
 import { ClassMethod, ClassProperty } from "./AlgorythmGenerator";
 import { DSA } from "./types";
 
@@ -42,6 +43,7 @@ const list_methods: ClassMethod[] = [
 ];
 
 export const dsa: DSA = {
+    ...part2,
     LRU: {
         generic: "<K, V>",
         type: "class",
