@@ -4,12 +4,6 @@
     "main": "index.js",
     "type": "module",
     "license": "MIT",
-    "dependencies": {
-        "@inquirer/prompts": "^8.7.2",
-        "@types/bun": "^1.4.2",
-        "prettier": "^3.9.9",
-        "typescript": "^7.0.2"
-    },
     "scripts": {
         "format": "prettier --write ./src",
         "lint": "bun run tsc --noEmit",
@@ -19,5 +13,11 @@
         "format:day": "prettier --write --ignore-path .prettierignore ./src/day1",
         "day": "echo src/day1",
         "test": "bun run ./scripts/test.ts"
+    },
+    "devDependencies": {
+        "@inquirer/prompts": "^8.7.3",
+        "@types/bun": "^1.4.3",
+        "prettier": "^3.9.10",
+        "typescript": "^7.0.2"
     }
 }
